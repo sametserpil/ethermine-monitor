@@ -3,33 +3,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_dashboard"
+            android:icon="@mipmap/ic_dashboard_black_48dp"
+            android:title="@string/dashboard" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_workers"
+            android:title="@string/workers" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_payouts"
+            android:icon="@mipmap/ic_attach_money_black_48dp"
+            android:title="@string/payouts" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_calculator"
+            android:icon="@mipmap/ic_attach_money_black_48dp"
+            android:title="@string/calculator" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/wallet">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_add_wallet"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="@string/new_wallet" />
+
         </menu>
     </item>
 

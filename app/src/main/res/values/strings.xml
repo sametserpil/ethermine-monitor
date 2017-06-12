@@ -8,5 +8,12 @@
     <string name="action_settings">Settings</string>
     <string name="eth_address_hint">Ethereum Wallet Address</string>
     <string name="add_wallet">Add Wallet</string>
+    <string name="eth_address_description">Please enter the Ethereum wallet address that you are mining to.</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="workers">Workers</string>
+    <string name="payouts">Payouts</string>
+    <string name="calculator">Calculator</string>
+    <string name="wallet">Wallet</string>
+    <string name="new_wallet">Add New Wallet</string>
 
 </resources>

@@ -1,6 +1,5 @@
 package com.samet.ethermine.etherminepoolmonitor.fragments;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,14 +10,14 @@ import android.widget.Button;
 import com.samet.ethermine.etherminepoolmonitor.R;
 
 public class AddNewWalletFragment extends Fragment {
-    private Button mPlusOneButton;
+    private Button addWalletButton;
 
 
     public AddNewWalletFragment() {
         // Required empty public constructor
     }
 
-    public static AddNewWalletFragment newInstance(String param1, String param2) {
+    public static AddNewWalletFragment newInstance() {
         return new AddNewWalletFragment();
     }
 
