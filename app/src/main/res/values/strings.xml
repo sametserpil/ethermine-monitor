@@ -16,4 +16,10 @@
     <string name="wallet">Wallet</string>
     <string name="new_wallet">Add New Wallet</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hashrates">Hashrates</string>
+    <string name="active_workers">Active Workers</string>
+    <string name="unpaid_balance">Unpaid Balance</string>
+
 </resources>

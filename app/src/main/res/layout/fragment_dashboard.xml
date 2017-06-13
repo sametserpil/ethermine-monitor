@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.samet.ethermine.etherminepoolmonitor.fragments.DashboardFragment"
+    android:weightSum="1">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/hashrate_summary_card"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        card_view:cardCornerRadius="4dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/active_workers_header_textview"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:padding="5dp"
+                android:background="@color/fbutton_color_emerald"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/active_workers" />
+            <TextView
+                android:id="@+id/active_workers_textview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:text="3"
+                android:textAlignment="center"
+                android:textSize="40sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/unpaid_balance_card"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        card_view:cardCornerRadius="4dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/unpaid_balance_header_textview"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:padding="5dp"
+                android:paddingBottom="0dp"
+                android:background="@color/fbutton_color_peter_river"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/unpaid_balance" />
+
+            <TextView
+                android:id="@+id/unpaid_balance_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="0.462393"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                android:id="@+id/progress_1"
+                android:layout_height="10dp"
+                android:layout_width="match_parent"
+                app:rcProgress="20"
+                app:rcMax="100"
+                app:rcRadius="0dp"
+                app:rcBackgroundColor="@android:color/white"
+                app:rcProgressColor="@color/fbutton_color_peter_river"
+                app:rcBackgroundPadding="0dp" />
+
+
+
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+</LinearLayout>

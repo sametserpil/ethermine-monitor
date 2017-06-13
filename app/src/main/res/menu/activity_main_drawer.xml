@@ -8,6 +8,7 @@
             android:title="@string/dashboard" />
         <item
             android:id="@+id/nav_workers"
+            android:icon="@mipmap/worker"
             android:title="@string/workers" />
         <item
             android:id="@+id/nav_payouts"
@@ -15,7 +16,7 @@
             android:title="@string/payouts" />
         <item
             android:id="@+id/nav_calculator"
-            android:icon="@mipmap/ic_attach_money_black_48dp"
+            android:icon="@mipmap/calc"
             android:title="@string/calculator" />
     </group>
 
@@ -23,7 +24,7 @@
         <menu>
             <item
                 android:id="@+id/nav_add_wallet"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@mipmap/ic_account_balance_wallet_black_48dp"
                 android:title="@string/new_wallet" />
 
         </menu>
