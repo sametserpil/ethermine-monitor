@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.samet.ethermine.etherminepoolmonitor.fragments.AddNewWalletFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.DashboardFragment;
+import com.samet.ethermine.etherminepoolmonitor.fragments.WorkersFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder,AddNewWalletFragment.newInstance()).commit();
         } else if (id == R.id.nav_dashboard) {
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, DashboardFragment.newInstance()).commit();
+        } else if (id == R.id.nav_workers) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, WorkersFragment.newInstance()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
