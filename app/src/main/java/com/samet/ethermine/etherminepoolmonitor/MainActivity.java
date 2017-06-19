@@ -12,7 +12,9 @@ import android.view.MenuItem;
 
 import com.samet.ethermine.etherminepoolmonitor.fragments.AddNewWalletFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.DashboardFragment;
+import com.samet.ethermine.etherminepoolmonitor.fragments.PayoutsFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.WorkersFragment;
+import com.samet.ethermine.etherminepoolmonitor.network.HttpUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        new HttpUtil().execute("https://ethermine.org/api/miner_new/2641a7d3fcb2a10b1d36d9bb4f5a15f0e542f5b6");                    //////////////////////////kajsdhasjdasd
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, DashboardFragment.newInstance()).commit();
         } else if (id == R.id.nav_workers) {
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, WorkersFragment.newInstance()).commit();
+        } else if (id == R.id.nav_payouts) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, PayoutsFragment.newInstance()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

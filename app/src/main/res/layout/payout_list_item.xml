@@ -9,31 +9,29 @@
 
 
     <TextView
-        android:id="@+id/list_item_header_miner_name_text_view"
+        android:id="@+id/list_item_payout_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="6"
         android:gravity="center_vertical"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:text="myminer"
         android:textColor="@color/colorPrimary"
-        android:ellipsize="end"
+        android:ellipsize="start"
         android:maxLines="1"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/list_item_header_hash_rate_text_view"
+        android:id="@+id/list_item_payout_amount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"
         android:ellipsize="end"
-        android:gravity="center_vertical"
+        android:gravity="end"
         android:maxLines="1"
-        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:text="125 MH/s"
+        android:paddingRight="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:paddingEnd="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
 </LinearLayout>

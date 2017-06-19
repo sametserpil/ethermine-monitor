@@ -1,5 +1,10 @@
 package com.samet.ethermine.etherminepoolmonitor.model;
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by samet on 16.06.2017.
  */
@@ -21,6 +26,23 @@ public class Worker {
         this.staleShares = staleShares;
         this.invalidShares = invalidShares;
         this.workerLastSubmitTime = workerLastSubmitTime;
+    }
+
+    public static Worker fromJsonData(JSONObject jsonData) {
+        Worker worker = new Worker();
+        try {
+            worker.setName(jsonData.getString("worker"));
+            worker.setHashRate(jsonData.getString("hashrate"));
+            worker.setReportedHashRate(jsonData.getString("reportedHashRate"));
+            worker.setValidShares(jsonData.getInt("validShares"));
+            worker.setStaleShares(jsonData.getInt("staleShares"));
+            worker.setInvalidShares(jsonData.getInt("invalidShares"));
+            worker.setWorkerLastSubmitTime(jsonData.getLong("workerLastSubmitTime"));
+        } catch (JSONException e) {
+            Log.e("Ethermine Pool Monitor", "Failed to parse json data", e);
+        } finally {
+            return worker;
+        }
     }
 
     public Worker() {

@@ -82,31 +82,31 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/dashboard_reported_hashrate_val"
                         android:textColor="@android:color/holo_red_light"
                         android:textAlignment="center"
                         android:gravity="center"
                         android:textSize="15sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="123 MH/s" />
+                        android:layout_height="40dp" />
 
                     <TextView
+                        android:id="@+id/dashboard_current_hashrate_val"
                         android:textColor="@android:color/holo_blue_light"
                         android:textAlignment="center"
                         android:gravity="center"
                         android:textSize="15sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="123 MH/s" />
+                        android:layout_height="40dp" />
 
                     <TextView
+                        android:id="@+id/dashboard_avarage_hashrate_val"
                         android:textColor="@android:color/holo_green_dark"
                         android:textAlignment="center"
                         android:gravity="center"
                         android:textSize="15sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="123 MH/s" />
+                        android:layout_height="40dp" />
 
                 </LinearLayout>
 
@@ -141,7 +141,6 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/fbutton_color_emerald"
                 android:padding="5dp"
-                android:text="3"
                 android:textAlignment="center"
                 android:textSize="40sp" />
         </LinearLayout>
@@ -175,7 +174,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="0.462393"
                 android:textAlignment="center"
                 android:textSize="30sp" />
 
@@ -272,30 +270,30 @@
 
                     <TextView
                         android:textColor="@android:color/holo_green_dark"
+                        android:id="@+id/dashboard_valid_shares_val"
                         android:textAlignment="center"
                         android:gravity="center"
                         android:textSize="15sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="67 (100%)" />
+                        android:layout_height="40dp" />
 
                     <TextView
                         android:textColor="@android:color/holo_blue_light"
+                        android:id="@+id/dashboard_stale_shares_val"
                         android:textAlignment="center"
                         android:gravity="center"
                         android:textSize="15sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="22 (100%)" />
+                        android:layout_height="40dp" />
 
                     <TextView
                         android:textColor="@android:color/holo_red_light"
+                        android:id="@+id/dashboard_invalid_shares_val"
                         android:textAlignment="center"
                         android:gravity="center"
                         android:textSize="15sp"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="321 (100%)" />
+                        android:layout_height="40dp" />
 
                 </LinearLayout>
 

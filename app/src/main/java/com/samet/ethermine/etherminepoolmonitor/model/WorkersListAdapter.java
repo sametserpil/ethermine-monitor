@@ -9,9 +9,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.samet.ethermine.etherminepoolmonitor.R;
+import com.samet.ethermine.etherminepoolmonitor.misc.Utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -48,7 +47,7 @@ public class WorkersListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_view_child, null);
+            convertView = infalInflater.inflate(R.layout.workers_list_view_child, null);
         }
 
         TextView currentHasrate = (TextView) convertView
@@ -74,18 +73,11 @@ public class WorkersListAdapter extends BaseExpandableListAdapter {
 
         TextView lastSeen = (TextView) convertView
                 .findViewById(R.id.last_seen_val);
-        lastSeen.setText(formatDate(worker.getWorkerLastSubmitTime()));
+        lastSeen.setText(Utils.longToDateString(worker.getWorkerLastSubmitTime()));
 
         return convertView;
     }
 
-    private String formatDate(long workerLastSubmitTime) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(workerLastSubmitTime * 1000L);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy HH:mm:ss z");
-        return formatter.format(calendar.getTime());
-
-    }
 
     @Override
     public int getChildrenCount(int groupPosition) {
@@ -114,7 +106,7 @@ public class WorkersListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_view_header, null);
+            convertView = infalInflater.inflate(R.layout.workers_list_view_header, null);
         }
 
         TextView list_item_header_miner_name_text_view = (TextView) convertView
