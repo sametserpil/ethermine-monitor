@@ -1,5 +1,7 @@
 package com.samet.ethermine.etherminepoolmonitor.model;
 
+import com.samet.ethermine.etherminepoolmonitor.misc.Utils;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -27,7 +29,7 @@ public class MinerData {
     private double unpaid;
 
     public String getFormattedUnpaid() {
-        return String.format(Locale.getDefault(), "%.4f ETH", (unpaid / Payout.dividerConst));
+        return String.format(Locale.getDefault(), "%.4f ETH", (unpaid / Utils.ethDividerConst));
     }
 
     public double getUnpaid() {

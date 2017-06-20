@@ -15,8 +15,6 @@ import java.util.Locale;
 
 public class Payout {
 
-    public final static double dividerConst = 1E+18;
-
     private int id;
     private String miner;
     private int start;
@@ -83,7 +81,7 @@ public class Payout {
     }
 
     public String getAmount() {
-        return String.format(Locale.getDefault(), "%.4f", (amount / dividerConst));
+        return String.format(Locale.getDefault(), "%.4f", (amount / Utils.ethDividerConst));
     }
 
     public void setAmount(double amount) {

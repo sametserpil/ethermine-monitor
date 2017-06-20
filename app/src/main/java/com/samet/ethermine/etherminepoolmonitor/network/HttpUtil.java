@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
 import com.samet.ethermine.etherminepoolmonitor.model.Payout;
+import com.samet.ethermine.etherminepoolmonitor.model.Worker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,20 +62,23 @@ public class HttpUtil extends AsyncTask<String, Void, String> {
             MinerData.getInstance().setHashrate(data.getString("hashRate"));
             MinerData.getInstance().setReportedHashrate(data.getString("reportedHashRate"));
             MinerData.getInstance().setAvarageHashrate(data.getDouble("avgHashrate"));
-/*
-            JSONArray workers = data.getJSONArray("workers");
+
+            JSONArray workerNames = data.getJSONObject("workers").names();
+            JSONObject workers = data.getJSONObject("workers");
             List<Worker> workerList = new ArrayList<>();
-            for (int i = 0; i < workers.length(); i++) {
-                workerList.add(Worker.fromJsonData(workers.getJSONObject(i)));
+            for (int i = 0; i < workerNames.length(); i++) {
+                workerList.add(Worker.fromJsonData(workers.getJSONObject(workerNames.getString(i))));
             }
             MinerData.getInstance().setWorkers(workerList);
-*/
+
             JSONArray payouts = data.getJSONArray("payouts");
             List<Payout> payoutList = new ArrayList<>();
             for (int i = 0; i < payouts.length(); i++) {
                 payoutList.add(Payout.fromJsonData(payouts.getJSONObject(i)));
             }
             MinerData.getInstance().setPayouts(payoutList);
+
+            MinerData.getInstance().setUnpaid(data.getDouble("unpaid"));
 
         } catch (JSONException e) {
             Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);

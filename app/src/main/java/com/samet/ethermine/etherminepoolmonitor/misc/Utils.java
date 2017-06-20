@@ -15,6 +15,8 @@ import java.util.Locale;
 
 public class Utils {
 
+    public final static double ethDividerConst = 1E+18;
+
     private static Calendar calendar = Calendar.getInstance();
     private static DateFormat ethermineDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
     private static DateFormat appDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);

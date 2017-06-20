@@ -10,13 +10,13 @@ import org.json.JSONObject;
  */
 
 public class Worker {
-    private String name;
-    private String hashRate;
-    private String reportedHashRate;
-    private int validShares;
-    private int staleShares;
-    private int invalidShares;
-    private long workerLastSubmitTime;
+    private String name = "";
+    private String hashRate = "";
+    private String reportedHashRate = "";
+    private int validShares = 0;
+    private int staleShares = 0;
+    private int invalidShares = 0;
+    private long workerLastSubmitTime = 0L;
 
     public Worker(String name, String hashRate, String reportedHashRate, int validShares, int staleShares, int invalidShares, long workerLastSubmitTime) {
         this.name = name;

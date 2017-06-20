@@ -36,11 +36,11 @@ public class DashboardFragment extends Fragment {
         ((TextView) view.findViewById(R.id.dashboard_reported_hashrate_val)).setText(MinerData.getInstance().getReportedHashrate());
         ((TextView) view.findViewById(R.id.dashboard_current_hashrate_val)).setText(MinerData.getInstance().getHashrate());
         ((TextView) view.findViewById(R.id.dashboard_avarage_hashrate_val)).setText(MinerData.getInstance().getFormattedAvarageHashrate());
-        ((TextView) view.findViewById(R.id.active_workers_textview)).setText(MinerData.getInstance().getWorkers().size());
+        ((TextView) view.findViewById(R.id.active_workers_textview)).setText(Integer.toString(MinerData.getInstance().getWorkers().size()));
         ((TextView) view.findViewById(R.id.unpaid_balance_textview)).setText(MinerData.getInstance().getFormattedUnpaid());
-        ((TextView) view.findViewById(R.id.dashboard_valid_shares_val)).setText(MinerData.getInstance().getValidShares());
-        ((TextView) view.findViewById(R.id.dashboard_stale_shares_val)).setText(MinerData.getInstance().getStaleShares());
-        ((TextView) view.findViewById(R.id.dashboard_invalid_shares_val)).setText(MinerData.getInstance().getInvalidShares());
+        ((TextView) view.findViewById(R.id.dashboard_valid_shares_val)).setText(Integer.toString(MinerData.getInstance().getValidShares()));
+        ((TextView) view.findViewById(R.id.dashboard_stale_shares_val)).setText(Integer.toString(MinerData.getInstance().getStaleShares()));
+        ((TextView) view.findViewById(R.id.dashboard_invalid_shares_val)).setText(Integer.toString(MinerData.getInstance().getInvalidShares()));
 
 
         return view;

@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        new HttpUtil().execute("https://ethermine.org/api/miner_new/2641a7d3fcb2a10b1d36d9bb4f5a15f0e542f5b6");                    //////////////////////////kajsdhasjdasd
-
+        //new HttpUtil().execute("https://ethermine.org/api/miner_new/2641a7d3fcb2a10b1d36d9bb4f5a15f0e542f5b6");                    //////////////////////////kajsdhasjdasd
+        new HttpUtil().execute("https://ethermine.org/api/miner_new/58801ebec6685d0d5461a30999fa5df91549a59e");                    //////////////////////////kajsdhasjdasd
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

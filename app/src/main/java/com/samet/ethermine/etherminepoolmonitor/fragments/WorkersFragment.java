@@ -9,11 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.samet.ethermine.etherminepoolmonitor.R;
-import com.samet.ethermine.etherminepoolmonitor.model.Worker;
+import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
 import com.samet.ethermine.etherminepoolmonitor.model.WorkersListAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by samet on 15.06.2017.
@@ -22,9 +19,8 @@ import java.util.List;
 
 public class WorkersFragment extends Fragment {
 
-    WorkersListAdapter listAdapter;
-    ExpandableListView expListView;
-    List<Worker> workers;
+    private WorkersListAdapter listAdapter;
+    private ExpandableListView expListView;
 
     public WorkersFragment() {
         // Required empty public constructor
@@ -45,9 +41,7 @@ public class WorkersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_workers, container, false);
         // Inflate the layout for this fragment
         expListView = (ExpandableListView) view.findViewById(R.id.workers_list_view);
-        workers = new ArrayList<>();
-        workers.add(new Worker("samet", "23 MH/s", "61 MH/s", 5, 4, 3, 1497616172));
-        listAdapter = new WorkersListAdapter(getContext(), workers);
+        listAdapter = new WorkersListAdapter(getContext(), MinerData.getInstance().getWorkers());
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
