@@ -23,8 +23,9 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.samet.ethermine.etherminepoolmonitor.R;
-import com.samet.ethermine.etherminepoolmonitor.model.Payout;
+import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
 import com.samet.ethermine.etherminepoolmonitor.model.PayoutListAdapter;
+import com.samet.ethermine.etherminepoolmonitor.model.Round;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,17 +52,7 @@ public class PayoutsFragment extends Fragment implements OnChartValueSelectedLis
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_payouts, container, false);
         ListView payoutsListView = (ListView) view.findViewById(R.id.payouts_list_view);
-        List<Payout> payouts = new ArrayList<>();
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        payouts.add(new Payout(1, null, 1, 1, 99250997331903620L, null, "2017-06-17T03:10:24.000Z"));
-        PayoutListAdapter adapter = new PayoutListAdapter(getContext(), R.layout.payout_list_item, payouts);
+        PayoutListAdapter adapter = new PayoutListAdapter(getContext(), R.layout.payout_list_item, MinerData.getInstance().getPayouts());
         payoutsListView.setAdapter(adapter);
 
 
@@ -96,19 +87,12 @@ public class PayoutsFragment extends Fragment implements OnChartValueSelectedLis
 
 
         List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(1f, 80f));
-        entries.add(new BarEntry(2f, 60f));
-        entries.add(new BarEntry(3f, 50f));
-        entries.add(new BarEntry(5f, 70f));
-        entries.add(new BarEntry(6f, 60f));
-        entries.add(new BarEntry(7f, 30f));
-        entries.add(new BarEntry(8f, 80f));
-        entries.add(new BarEntry(9f, 60f));
-        entries.add(new BarEntry(10f, 50f));
-        entries.add(new BarEntry(11f, 70f));
-        entries.add(new BarEntry(12f, 60f));
+        int columnId = 1;
+        for (Round round : MinerData.getInstance().getRounds()) {
+            entries.add(new BarEntry(columnId++, (float) round.getAmount()));
+        }
 
-        BarDataSet set = new BarDataSet(entries, "Last 100 Payouts");
+        BarDataSet set = new BarDataSet(entries, "Last 100 Rounds");
         set.setColors(ColorTemplate.MATERIAL_COLORS);
         BarData data = new BarData(set);
         payoutsChart.setData(data);

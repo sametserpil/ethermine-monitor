@@ -6,10 +6,10 @@ import android.util.Log;
 
 import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
 import com.samet.ethermine.etherminepoolmonitor.model.Payout;
+import com.samet.ethermine.etherminepoolmonitor.model.Round;
 import com.samet.ethermine.etherminepoolmonitor.model.Worker;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -62,25 +62,37 @@ public class HttpUtil extends AsyncTask<String, Void, String> {
             MinerData.getInstance().setHashrate(data.getString("hashRate"));
             MinerData.getInstance().setReportedHashrate(data.getString("reportedHashRate"));
             MinerData.getInstance().setAvarageHashrate(data.getDouble("avgHashrate"));
+            MinerData.getInstance().setUnpaid(data.getDouble("unpaid"));
 
             JSONArray workerNames = data.getJSONObject("workers").names();
             JSONObject workers = data.getJSONObject("workers");
             List<Worker> workerList = new ArrayList<>();
-            for (int i = 0; i < workerNames.length(); i++) {
-                workerList.add(Worker.fromJsonData(workers.getJSONObject(workerNames.getString(i))));
+            if (workerNames != null) {
+                for (int i = 0; i < workerNames.length(); i++) {
+                    workerList.add(Worker.fromJsonData(workers.getJSONObject(workerNames.getString(i))));
+                }
             }
             MinerData.getInstance().setWorkers(workerList);
 
             JSONArray payouts = data.getJSONArray("payouts");
             List<Payout> payoutList = new ArrayList<>();
-            for (int i = 0; i < payouts.length(); i++) {
-                payoutList.add(Payout.fromJsonData(payouts.getJSONObject(i)));
+            if (payouts != null) {
+                for (int i = 0; i < payouts.length(); i++) {
+                    payoutList.add(Payout.fromJsonData(payouts.getJSONObject(i)));
+                }
             }
             MinerData.getInstance().setPayouts(payoutList);
 
-            MinerData.getInstance().setUnpaid(data.getDouble("unpaid"));
+            JSONArray rounds = data.getJSONArray("rounds");
+            List<Round> roundList = new ArrayList<>();
+            if (rounds != null) {
+                for (int i = rounds.length() - 1; i >= 0; i--) {
+                    roundList.add(Round.fromJsonData(rounds.getJSONObject(i)));
+                }
+            }
+            MinerData.getInstance().setRounds(roundList);
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
         }
     }

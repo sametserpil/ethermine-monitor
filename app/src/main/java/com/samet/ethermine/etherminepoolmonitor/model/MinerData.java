@@ -26,6 +26,16 @@ public class MinerData {
     private double avarageHashrate;
     private List<Payout> payouts;
     private List<Worker> workers;
+    private List<Round> rounds;
+
+    public List<Round> getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(List<Round> rounds) {
+        this.rounds = rounds;
+    }
+
     private double unpaid;
 
     public String getFormattedUnpaid() {
@@ -69,11 +79,11 @@ public class MinerData {
     }
 
     public String getFormattedAvarageHashrate() {
-        if (hashrate.contains("MH")) {
+        if (hashrate.contains("MH") || reportedHashrate.contains("MH")) {
             return String.format(Locale.getDefault(), "%.1f MH/s", avarageHashrate / 1e+6);
-        } else if (hashrate.contains("GH")) {
+        } else if (hashrate.contains("GH") || reportedHashrate.contains("MH")) {
             return String.format(Locale.getDefault(), "%.1f GH/s", avarageHashrate / 1e+9);
-        } else if (hashrate.contains("KH")) {
+        } else if (hashrate.contains("KH") || reportedHashrate.contains("MH")) {
             return String.format(Locale.getDefault(), "%.1f KH/s", avarageHashrate / 1e+3);
         } else {
             return String.format(Locale.getDefault(), "%.1f H/s", avarageHashrate);
