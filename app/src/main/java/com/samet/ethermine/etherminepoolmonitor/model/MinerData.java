@@ -27,6 +27,15 @@ public class MinerData {
     private List<Payout> payouts;
     private List<Worker> workers;
     private List<Round> rounds;
+    private Settings settings;
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
+    }
 
     public List<Round> getRounds() {
         return rounds;

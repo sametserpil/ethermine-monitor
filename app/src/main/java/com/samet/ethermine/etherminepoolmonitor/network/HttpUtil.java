@@ -7,6 +7,7 @@ import android.util.Log;
 import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
 import com.samet.ethermine.etherminepoolmonitor.model.Payout;
 import com.samet.ethermine.etherminepoolmonitor.model.Round;
+import com.samet.ethermine.etherminepoolmonitor.model.Settings;
 import com.samet.ethermine.etherminepoolmonitor.model.Worker;
 
 import org.json.JSONArray;
@@ -91,6 +92,10 @@ public class HttpUtil extends AsyncTask<String, Void, String> {
                 }
             }
             MinerData.getInstance().setRounds(roundList);
+
+            JSONObject settings = data.getJSONObject("settings");
+            MinerData.getInstance().setSettings(Settings.fromJsonData(settings));
+
 
         } catch (Exception e) {
             Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
