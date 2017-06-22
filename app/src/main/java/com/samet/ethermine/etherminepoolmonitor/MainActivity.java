@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.samet.ethermine.etherminepoolmonitor.fragments.AddNewWalletFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.DashboardFragment;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.header_current_wallet_text_view)).setText("0x2641a7d3fcb2a10b1d36d9bb4f5a15f0e542f5b6");
         navigationView.setNavigationItemSelectedListener(this);
     }
 

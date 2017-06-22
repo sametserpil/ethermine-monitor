@@ -29,5 +29,6 @@
     <string name="stale">Stale</string>
     <string name="invalid">Invalid</string>
     <string name="last_seen">Last Seen Time</string>
+    <string name="current_wallet">Current Wallet</string>
 
 </resources>
