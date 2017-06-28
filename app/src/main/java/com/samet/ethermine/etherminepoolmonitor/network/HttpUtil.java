@@ -59,6 +59,14 @@ public class HttpUtil extends AsyncTask<String, Void, String> {
         super.onPostExecute(result);
         try {
             JSONObject data = new JSONObject(result);
+
+            JSONObject minerStats = data.getJSONObject("minerStats");
+            MinerData.getInstance().setActiveWorkers(minerStats.getInt("activeWorkers"));
+            MinerData.getInstance().setValidShares(minerStats.getInt("validShares"));
+            MinerData.getInstance().setStaleShares(minerStats.getInt("staleShares"));
+            MinerData.getInstance().setInvalidShares(minerStats.getInt("invalidShares"));
+
+
             MinerData.getInstance().setAddress(data.getString("address"));
             MinerData.getInstance().setHashrate(data.getString("hashRate"));
             MinerData.getInstance().setReportedHashrate(data.getString("reportedHashRate"));

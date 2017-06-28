@@ -20,6 +20,16 @@ public class MinerData {
         return instance;
     }
 
+    private int activeWorkers;
+
+    public int getActiveWorkers() {
+        return activeWorkers;
+    }
+
+    public void setActiveWorkers(int activeWorkers) {
+        this.activeWorkers = activeWorkers;
+    }
+
     private String address;
     private String hashrate;
     private String reportedHashrate;
@@ -28,6 +38,9 @@ public class MinerData {
     private List<Worker> workers;
     private List<Round> rounds;
     private Settings settings;
+    private int validShares;
+    private int staleShares;
+    private int invalidShares;
 
     public Settings getSettings() {
         return settings;
@@ -120,26 +133,26 @@ public class MinerData {
     }
 
     public int getValidShares() {
-        int shares = 0;
-        for (Worker worker : workers) {
-            shares += worker.getValidShares();
-        }
-        return shares;
+        return validShares;
+    }
+
+    public void setValidShares(int validShares) {
+        this.validShares = validShares;
     }
 
     public int getStaleShares() {
-        int shares = 0;
-        for (Worker worker : workers) {
-            shares += worker.getStaleShares();
-        }
-        return shares;
+        return staleShares;
+    }
+
+    public void setStaleShares(int staleShares) {
+        this.staleShares = staleShares;
     }
 
     public int getInvalidShares() {
-        int shares = 0;
-        for (Worker worker : workers) {
-            shares += worker.getInvalidShares();
-        }
-        return shares;
+        return invalidShares;
+    }
+
+    public void setInvalidShares(int invalidShares) {
+        this.invalidShares = invalidShares;
     }
 }

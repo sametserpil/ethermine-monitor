@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_dashboard"
             android:icon="@mipmap/ic_dashboard_black_48dp"
@@ -27,7 +27,28 @@
                 android:icon="@mipmap/ic_account_balance_wallet_black_48dp"
                 android:title="@string/new_wallet" />
 
+            <item
+                android:id="@+id/change_wallet"
+                android:icon="@mipmap/ic_account_balance_wallet_black_48dp"
+                android:title="@string/change_wallet" />
+
         </menu>
     </item>
+
+
+    <item android:title="@string/rules">
+        <menu>
+            <item
+                android:id="@+id/my_rules"
+                android:icon="@mipmap/ic_account_balance_wallet_black_48dp"
+                android:title="@string/my_rules" />
+            <item
+                android:id="@+id/new_rule"
+                android:icon="@mipmap/ic_account_balance_wallet_black_48dp"
+                android:title="@string/create_new_rule" />
+
+        </menu>
+    </item>
+
 
 </menu>

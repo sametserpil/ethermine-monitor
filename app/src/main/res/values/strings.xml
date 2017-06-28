@@ -30,5 +30,9 @@
     <string name="invalid">Invalid</string>
     <string name="last_seen">Last Seen Time</string>
     <string name="current_wallet">Current Wallet</string>
+    <string name="rules">Rules</string>
+    <string name="my_rules">My Rules</string>
+    <string name="change_wallet">Change Wallet</string>
+    <string name="create_new_rule">Create New Rule</string>
 
 </resources>
