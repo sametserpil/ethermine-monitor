@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.samet.ethermine.etherminepoolmonitor.fragments.AddNewWalletFragment;
+import com.samet.ethermine.etherminepoolmonitor.fragments.CalculatorFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.DashboardFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.PayoutsFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.WorkersFragment;
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, WorkersFragment.newInstance()).commit();
         } else if (id == R.id.nav_payouts) {
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, PayoutsFragment.newInstance()).commit();
+        } else if (id == R.id.nav_calculator) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, CalculatorFragment.newInstance()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

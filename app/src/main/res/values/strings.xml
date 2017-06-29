@@ -34,5 +34,9 @@
     <string name="my_rules">My Rules</string>
     <string name="change_wallet">Change Wallet</string>
     <string name="create_new_rule">Create New Rule</string>
+    <string name="expected_income">Expected Income</string>
+    <string name="eth">ETH</string>
+    <string name="btc">BTC</string>
+    <string name="usd">USD</string>
 
 </resources>

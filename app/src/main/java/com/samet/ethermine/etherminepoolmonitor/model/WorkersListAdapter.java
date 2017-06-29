@@ -91,7 +91,7 @@ public class WorkersListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return this.workers.size();
+        return MinerData.getInstance().getActiveWorkers();
     }
 
     @Override

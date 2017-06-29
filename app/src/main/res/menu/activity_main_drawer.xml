@@ -29,7 +29,7 @@
 
             <item
                 android:id="@+id/change_wallet"
-                android:icon="@mipmap/ic_account_balance_wallet_black_48dp"
+                android:icon="@android:drawable/stat_notify_sync"
                 android:title="@string/change_wallet" />
 
         </menu>
@@ -40,11 +40,11 @@
         <menu>
             <item
                 android:id="@+id/my_rules"
-                android:icon="@mipmap/ic_account_balance_wallet_black_48dp"
+                android:icon="@mipmap/rules"
                 android:title="@string/my_rules" />
             <item
                 android:id="@+id/new_rule"
-                android:icon="@mipmap/ic_account_balance_wallet_black_48dp"
+                android:icon="@mipmap/create_rule"
                 android:title="@string/create_new_rule" />
 
         </menu>

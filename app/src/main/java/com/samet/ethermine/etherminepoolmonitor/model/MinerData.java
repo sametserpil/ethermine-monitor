@@ -41,6 +41,20 @@ public class MinerData {
     private int validShares;
     private int staleShares;
     private int invalidShares;
+    private double unpaid;
+    private EstimatedEarnings estimatedEarnings;
+
+    public static void setInstance(MinerData instance) {
+        MinerData.instance = instance;
+    }
+
+    public EstimatedEarnings getEstimatedEarnings() {
+        return estimatedEarnings;
+    }
+
+    public void setEstimatedEarnings(EstimatedEarnings estimatedEarnings) {
+        this.estimatedEarnings = estimatedEarnings;
+    }
 
     public Settings getSettings() {
         return settings;
@@ -58,7 +72,7 @@ public class MinerData {
         this.rounds = rounds;
     }
 
-    private double unpaid;
+
 
     public String getFormattedUnpaid() {
         return String.format(Locale.getDefault(), "%.4f ETH", (unpaid / Utils.ethDividerConst));

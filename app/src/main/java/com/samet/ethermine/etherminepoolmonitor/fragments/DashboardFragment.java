@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.samet.ethermine.etherminepoolmonitor.R;
 import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
 
@@ -41,7 +42,8 @@ public class DashboardFragment extends Fragment {
         ((TextView) view.findViewById(R.id.dashboard_valid_shares_val)).setText(Integer.toString(MinerData.getInstance().getValidShares()));
         ((TextView) view.findViewById(R.id.dashboard_stale_shares_val)).setText(Integer.toString(MinerData.getInstance().getStaleShares()));
         ((TextView) view.findViewById(R.id.dashboard_invalid_shares_val)).setText(Integer.toString(MinerData.getInstance().getInvalidShares()));
-
+        float unpaidProgressVal = (float) MinerData.getInstance().getUnpaid() / Float.parseFloat(MinerData.getInstance().getSettings().getMinPayout()) * 100;
+        ((RoundCornerProgressBar) view.findViewById(R.id.unpaid_progress)).setProgress(unpaidProgressVal);
 
         return view;
     }

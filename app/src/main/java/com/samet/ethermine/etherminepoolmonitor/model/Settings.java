@@ -42,7 +42,7 @@ public class Settings {
         Settings settings = new Settings();
         try {
             settings.setEmail(jsonData.getString("email"));
-            settings.setIp(jsonData.getString("ip"));
+            //settings.setIp(jsonData.getString("ip"));
             settings.setMinPayout(jsonData.getString("minPayout"));
         } catch (JSONException e) {
             Log.e("Ethermine Pool Monitor", "Failed to parse json data", e);
