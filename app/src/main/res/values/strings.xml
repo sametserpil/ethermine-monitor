@@ -38,5 +38,6 @@
     <string name="eth">ETH</string>
     <string name="btc">BTC</string>
     <string name="usd">USD</string>
+    <string name="next_payout">Next Payout</string>
 
 </resources>

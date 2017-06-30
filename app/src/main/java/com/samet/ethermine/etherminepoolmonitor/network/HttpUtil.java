@@ -52,6 +52,7 @@ public class HttpUtil extends AsyncTask<String, Void, String> {
             return sb.toString();
         } catch (IOException e) {
             Log.e("Ethermine Pool Monitor", "Failed to get miner data from pool", e);
+            //// TODO: 30.06.2017 hic cekemezse failed ekranina gecmeli
         }
         return null;
     }

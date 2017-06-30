@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.samet.ethermine.etherminepoolmonitor.R;
+import com.samet.ethermine.etherminepoolmonitor.misc.Utils;
 import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
+
+import java.util.Calendar;
 
 public class CalculatorFragment extends Fragment implements MaterialSpinner.OnItemSelectedListener {
 
@@ -44,7 +47,18 @@ public class CalculatorFragment extends Fragment implements MaterialSpinner.OnIt
         spinner.setItems("Every Minute", "Hourly", "Daily", "Weekly", "Monthly");
         spinner.setOnItemSelectedListener(this);
         setIncomePerMin();
+        ((TextView) view.findViewById(R.id.next_payout_textview)).setText(calculateNextPayoutDate());
         return view;
+    }
+
+    private String calculateNextPayoutDate() {
+        double neededEarningToGetPayout = Double.parseDouble(MinerData.getInstance().getSettings().getMinPayout()) - MinerData.getInstance().getUnpaid();
+        neededEarningToGetPayout = neededEarningToGetPayout / Utils.ethDividerConst;
+        int neededMinsToGetPayout = (int) (Math.rint(neededEarningToGetPayout / MinerData.getInstance().getEstimatedEarnings().getEthPerMin()));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE, neededMinsToGetPayout);
+        return Utils.appDateFormat.format(calendar.getTime());
     }
 
 

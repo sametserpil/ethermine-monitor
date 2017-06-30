@@ -19,7 +19,7 @@ public class Utils {
 
     private static Calendar calendar = Calendar.getInstance();
     private static DateFormat ethermineDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
-    private static DateFormat appDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
+    public static DateFormat appDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
 
     public static String simplifyDateString(String dateString) {
         Date date = null;
