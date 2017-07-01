@@ -15,13 +15,13 @@ import java.util.Locale;
 
 public class Payout {
 
-    private int id;
-    private String miner;
-    private int start;
-    private int end;
-    private double amount;
-    private String txHash;
-    private String paidOn;
+    private int id = -1;
+    private String miner = "unknown";
+    private int start = 0;
+    private int end = 0;
+    private double amount = 0;
+    private String txHash = "";
+    private String paidOn = "";
 
     public Payout(int id, String miner, int start, int end, double amount, String txHash, String paidOn) {
         this.id = id;

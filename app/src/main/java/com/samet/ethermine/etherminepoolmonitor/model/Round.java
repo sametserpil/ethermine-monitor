@@ -12,8 +12,8 @@ import org.json.JSONObject;
  */
 
 public class Round {
-    private int block;
-    private double amount;
+    private int block = -1;
+    private double amount = 0;
 
     public static Round fromJsonData(JSONObject jsonData) {
         Round round = new Round();

@@ -98,17 +98,6 @@ public class PayoutsFragment extends Fragment implements OnChartValueSelectedLis
         payoutsChart.setData(data);
         payoutsChart.invalidate(); // refresh
 
-
-
-
-
-
-
-
-
-
-
-
         return view;
     }
 

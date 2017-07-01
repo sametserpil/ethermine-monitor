@@ -8,9 +8,9 @@ import java.util.Locale;
 
 public class EstimatedEarnings {
 
-    private double ethPerMin;
-    private double btcPerMin;
-    private double usdPerMin;
+    private double ethPerMin = 0;
+    private double btcPerMin = 0;
+    private double usdPerMin = 0;
 
     public double getEthPerMin() {
         return ethPerMin;

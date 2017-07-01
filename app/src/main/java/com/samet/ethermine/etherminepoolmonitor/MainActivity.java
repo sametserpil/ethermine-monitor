@@ -1,5 +1,7 @@
 package com.samet.ethermine.etherminepoolmonitor;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,11 +17,18 @@ import com.samet.ethermine.etherminepoolmonitor.fragments.AddNewWalletFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.CalculatorFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.DashboardFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.PayoutsFragment;
+import com.samet.ethermine.etherminepoolmonitor.fragments.WalletsFragment;
 import com.samet.ethermine.etherminepoolmonitor.fragments.WorkersFragment;
+import com.samet.ethermine.etherminepoolmonitor.misc.IMinerDataGetListener;
+import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
 import com.samet.ethermine.etherminepoolmonitor.network.HttpUtil;
+import com.samet.ethermine.etherminepoolmonitor.network.MinerDataHttpResult;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, IMinerDataGetListener {
+
+    private TextView mainScreenTextView;
+    private TextView walletIdTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +36,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        new HttpUtil().execute("https://ethermine.org/api/miner_new/2641a7d3fcb2a10b1d36d9bb4f5a15f0e542f5b6");                    //////////////////////////kajsdhasjdasd
+        mainScreenTextView = (TextView) findViewById(R.id.main_screen_textview);
+        String activeWalletId = getSavedMinerId();
+        //new HttpUtil(this).execute("https://ethermine.org/api/miner_new/2641a7d3fcb2a10b1d36d9bb4f5a15f0e542f5b6");                    //////////////////////////kajsdhasjdasd
         //new HttpUtil().execute("https://ethermine.org/api/miner_new/58801ebec6685d0d5461a30999fa5df91549a59e");                    //////////////////////////kajsdhasjdasd
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -36,8 +47,21 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.header_current_wallet_text_view)).setText("0x2641a7d3fcb2a10b1d36d9bb4f5a15f0e542f5b6");
         navigationView.setNavigationItemSelectedListener(this);
+        walletIdTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.header_current_wallet_text_view);
+        if (activeWalletId.equals(getString(R.string.unknown))) {
+            mainScreenTextView.setText(getString(R.string.no_wallet_selected));
+        } else {
+            new HttpUtil(this).execute(getString(R.string.get_miner_data_url_prefix) + activeWalletId);
+        }
+        walletIdTextView.setText(activeWalletId);
+    }
+
+    private String getSavedMinerId() {
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(
+                getString(R.string.wallet_id_shared_pref_file), Context.MODE_PRIVATE);
+        return sharedPref.getString(getString(R.string.active_wallet_id), getString(R.string.unknown));
     }
 
     @Override
@@ -74,7 +98,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_add_wallet) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder,AddNewWalletFragment.newInstance()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, AddNewWalletFragment.newInstance(), getString(R.string.add_wallet)).commit();
         } else if (id == R.id.nav_dashboard) {
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, DashboardFragment.newInstance()).commit();
         } else if (id == R.id.nav_workers) {
@@ -83,10 +107,31 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, PayoutsFragment.newInstance()).commit();
         } else if (id == R.id.nav_calculator) {
             getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, CalculatorFragment.newInstance()).commit();
+        } else if (id == R.id.change_wallet) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, WalletsFragment.newInstance()).commit();
         }
+
+        mainScreenTextView.setText("");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void onGetMinerDataHttpGetResult(MinerDataHttpResult result) {
+        switch (result) {
+            case FAILED_TO_DOWNLOAD:
+                mainScreenTextView.setText(getString(R.string.failed_to_download));
+                break;
+            case FAILED_TO_PARSE:
+                mainScreenTextView.setText(getString(R.string.failed_to_parse));
+                break;
+            case SUCCESS:
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_activity_fragment_holder, DashboardFragment.newInstance()).commit();
+                break;
+        }
+        walletIdTextView.setText(MinerData.getInstance().getAddress());
+    }
+
 }

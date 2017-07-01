@@ -39,5 +39,14 @@
     <string name="btc">BTC</string>
     <string name="usd">USD</string>
     <string name="next_payout">Next Payout</string>
+    <string name="failed_to_download">Failed to download miner data.\nPlease hit the refresh button to try again.</string>
+    <string name="failed_to_parse">Failed to fetch some of the data.\nApplication may produce unexpected results.\nYou may hit the refresh button to make sure that the all data is downloaded.</string>
+    <string name="wallet_id_shared_pref_file">com.samet.ethermine.mineridsharedpref</string>
+    <string name="unknown">Unknown</string>
+    <string name="active_wallet_id">activeMinerId</string>
+    <string name="no_wallet_selected">You have not added any wallet id.\nPlease go to add new wallet menu.</string>
+    <string name="get_miner_data_url_prefix">https://ethermine.org/api/miner_new/</string>
+    <string name="wallet_ids">wallet_ids</string>
+    <string name="added_new_wallet_address">Added new wallet address</string>
 
 </resources>

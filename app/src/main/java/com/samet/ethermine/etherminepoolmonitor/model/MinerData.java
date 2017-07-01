@@ -2,6 +2,7 @@ package com.samet.ethermine.etherminepoolmonitor.model;
 
 import com.samet.ethermine.etherminepoolmonitor.misc.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,19 +31,19 @@ public class MinerData {
         this.activeWorkers = activeWorkers;
     }
 
-    private String address;
-    private String hashrate;
-    private String reportedHashrate;
-    private double avarageHashrate;
-    private List<Payout> payouts;
-    private List<Worker> workers;
-    private List<Round> rounds;
-    private Settings settings;
-    private int validShares;
-    private int staleShares;
-    private int invalidShares;
-    private double unpaid;
-    private EstimatedEarnings estimatedEarnings;
+    private String address = "";
+    private String hashrate = "";
+    private String reportedHashrate = "";
+    private double avarageHashrate = 0;
+    private List<Payout> payouts = new ArrayList<>();
+    private List<Worker> workers = new ArrayList<>();
+    private List<Round> rounds = new ArrayList<>();
+    private Settings settings = new Settings();
+    private int validShares = 0;
+    private int staleShares = 0;
+    private int invalidShares = 0;
+    private double unpaid = 0;
+    private EstimatedEarnings estimatedEarnings = new EstimatedEarnings();
 
     public static void setInstance(MinerData instance) {
         MinerData.instance = instance;

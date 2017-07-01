@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity_fragment_holder"
@@ -9,4 +9,13 @@
     tools:context="com.samet.ethermine.etherminepoolmonitor.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/main_screen_textview"
+        android:layout_centerInParent="true"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

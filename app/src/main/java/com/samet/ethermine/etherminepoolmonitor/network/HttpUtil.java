@@ -4,6 +4,7 @@ package com.samet.ethermine.etherminepoolmonitor.network;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.samet.ethermine.etherminepoolmonitor.misc.IMinerDataGetListener;
 import com.samet.ethermine.etherminepoolmonitor.model.EstimatedEarnings;
 import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
 import com.samet.ethermine.etherminepoolmonitor.model.Payout;
@@ -28,11 +29,16 @@ import java.util.List;
  * Created by samet on 17.06.2017.
  */
 
-public class HttpUtil extends AsyncTask<String, Void, String> {
+public class HttpUtil extends AsyncTask<String, Void, MinerDataHttpResult> {
+    private final IMinerDataGetListener minerDataGetListener;
+    private String httpResult = "";
 
+    public HttpUtil(IMinerDataGetListener minerDataGetListener) {
+        this.minerDataGetListener = minerDataGetListener;
+    }
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected MinerDataHttpResult doInBackground(String... strings) {
         try {
             HttpURLConnection urlConnection;
             URL url = new URL(strings[0]);
@@ -49,181 +55,90 @@ public class HttpUtil extends AsyncTask<String, Void, String> {
                 sb.append(line).append("\n");
             }
             br.close();
-            return sb.toString();
+            httpResult = sb.toString();
+            return MinerDataHttpResult.SUCCESS;
         } catch (IOException e) {
             Log.e("Ethermine Pool Monitor", "Failed to get miner data from pool", e);
-            //// TODO: 30.06.2017 hic cekemezse failed ekranina gecmeli
+            return MinerDataHttpResult.FAILED_TO_DOWNLOAD;
         }
-        return null;
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(MinerDataHttpResult result) {
         super.onPostExecute(result);
-        /*
-            I have used multiple try-catch block because I wanted to continue parsing even though it catches an exception.
-         */
+
+        if (result.equals(MinerDataHttpResult.FAILED_TO_DOWNLOAD)) {
+            minerDataGetListener.onGetMinerDataHttpGetResult(result);
+            return;
+        }
 
         JSONObject data = null;
-        //// TODO: 29.06.2017 http request fail ederse bisiler yapmak gerek yoksa null pointer yiyoz
         try {
-            data = new JSONObject(result);
+            data = new JSONObject(httpResult);
         } catch (JSONException e) {
             Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            data = new JSONObject();
+            minerDataGetListener.onGetMinerDataHttpGetResult(result);
+            return;
         }
 
         JSONObject minerStats = null;
         try {
             minerStats = data.getJSONObject("minerStats");
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            minerStats = new JSONObject();
-        }
-        try {
             MinerData.getInstance().setActiveWorkers(minerStats.getInt("activeWorkers"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setActiveWorkers(0);
-        }
-        try {
             MinerData.getInstance().setValidShares(minerStats.getInt("validShares"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setValidShares(0);
-        }
-        try {
             MinerData.getInstance().setStaleShares(minerStats.getInt("staleShares"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setStaleShares(0);
-        }
-        try {
             MinerData.getInstance().setInvalidShares(minerStats.getInt("invalidShares"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setInvalidShares(0);
-        }
-
-        try {
             MinerData.getInstance().setAddress(data.getString("address"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setAddress("Address not found!");
-        }
-        try {
             MinerData.getInstance().setHashrate(data.getString("hashRate"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setHashrate("0.0 H/s");
-        }
-        try {
             MinerData.getInstance().setReportedHashrate(data.getString("reportedHashRate"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setReportedHashrate("0.0 H/s");
-        }
-        try {
             MinerData.getInstance().setAvarageHashrate(data.getDouble("avgHashrate"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setAvarageHashrate(0.0);
-        }
-        try {
             MinerData.getInstance().setUnpaid(data.getDouble("unpaid"));
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-            MinerData.getInstance().setUnpaid(0.0);
-        }
 
-        JSONArray workerNames = null;
-        try {
-            workerNames = data.getJSONObject("workers").names();
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-        }
-        JSONObject workers = null;
-        try {
-            workers = data.getJSONObject("workers");
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-        }
-        List<Worker> workerList = new ArrayList<>();
-        if (workerNames != null) {
-            for (int i = 0; i < workerNames.length(); i++) {
-                try {
+            JSONArray workerNames = data.getJSONObject("workers").names();
+            JSONObject workers = data.getJSONObject("workers");
+            List<Worker> workerList = new ArrayList<>();
+            if (workerNames != null) {
+                for (int i = 0; i < workerNames.length(); i++) {
                     workerList.add(Worker.fromJsonData(workers.getJSONObject(workerNames.getString(i))));
-                } catch (JSONException e) {
-                    Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
                 }
             }
-        }
-        MinerData.getInstance().setWorkers(workerList);
+            MinerData.getInstance().setWorkers(workerList);
 
-        JSONArray payouts = null;
-        try {
-            payouts = data.getJSONArray("payouts");
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-        }
-        List<Payout> payoutList = new ArrayList<>();
-        if (payouts != null) {
-            for (int i = 0; i < payouts.length(); i++) {
-                try {
+            JSONArray payouts = data.getJSONArray("payouts");
+            List<Payout> payoutList = new ArrayList<>();
+            if (payouts != null) {
+                for (int i = 0; i < payouts.length(); i++) {
                     payoutList.add(Payout.fromJsonData(payouts.getJSONObject(i)));
-                } catch (JSONException e) {
-                    Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
                 }
             }
-        }
-        MinerData.getInstance().setPayouts(payoutList);
+            MinerData.getInstance().setPayouts(payoutList);
 
-        JSONArray rounds = null;
-        try {
-            rounds = data.getJSONArray("rounds");
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-        }
-        List<Round> roundList = new ArrayList<>();
-        if (rounds != null) {
-            for (int i = rounds.length() - 1; i >= 0; i--) {
-                try {
+            JSONArray rounds = data.getJSONArray("rounds");
+            List<Round> roundList = new ArrayList<>();
+            if (rounds != null) {
+                for (int i = rounds.length() - 1; i >= 0; i--) {
                     roundList.add(Round.fromJsonData(rounds.getJSONObject(i)));
-                } catch (JSONException e) {
-                    Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
                 }
             }
-        }
-        MinerData.getInstance().setRounds(roundList);
+            MinerData.getInstance().setRounds(roundList);
 
-        JSONObject settings = null;
-        try {
-            settings = data.getJSONObject("settings");
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-        }
-        MinerData.getInstance().setSettings(Settings.fromJsonData(settings));
+            JSONObject settings = data.getJSONObject("settings");
+            MinerData.getInstance().setSettings(Settings.fromJsonData(settings));
 
-        EstimatedEarnings estimatedEarnings = new EstimatedEarnings();
-        double ethPerMin = 0, btcPerMin = 0, usdPerMin = 0;
-        try {
+            EstimatedEarnings estimatedEarnings = new EstimatedEarnings();
+            double ethPerMin = 0, btcPerMin = 0, usdPerMin = 0;
             ethPerMin = data.getDouble("ethPerMin");
             estimatedEarnings.setEthPerMin(ethPerMin);
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-        }
-        try {
             usdPerMin = data.getDouble("usdPerMin");
             estimatedEarnings.setUsdPerMin(usdPerMin);
-        } catch (JSONException e) {
-            Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
-        }
-        try {
             btcPerMin = data.getDouble("btcPerMin");
             estimatedEarnings.setBtcPerMin(btcPerMin);
+            MinerData.getInstance().setEstimatedEarnings(estimatedEarnings);
         } catch (JSONException e) {
             Log.e("Ethermine Pool Monitor", "Failed to parse http request reuslt", e);
+            minerDataGetListener.onGetMinerDataHttpGetResult(MinerDataHttpResult.FAILED_TO_PARSE);
+            return;
         }
-        MinerData.getInstance().setEstimatedEarnings(estimatedEarnings);
+        minerDataGetListener.onGetMinerDataHttpGetResult(MinerDataHttpResult.SUCCESS);
     }
 }
