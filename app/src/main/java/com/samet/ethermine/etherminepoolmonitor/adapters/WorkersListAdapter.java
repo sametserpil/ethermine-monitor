@@ -1,4 +1,4 @@
-package com.samet.ethermine.etherminepoolmonitor.model;
+package com.samet.ethermine.etherminepoolmonitor.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.samet.ethermine.etherminepoolmonitor.R;
 import com.samet.ethermine.etherminepoolmonitor.misc.Utils;
+import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
+import com.samet.ethermine.etherminepoolmonitor.model.Worker;
 
 import java.util.List;
 

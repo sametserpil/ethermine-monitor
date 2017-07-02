@@ -23,8 +23,8 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.samet.ethermine.etherminepoolmonitor.R;
+import com.samet.ethermine.etherminepoolmonitor.adapters.PayoutListAdapter;
 import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
-import com.samet.ethermine.etherminepoolmonitor.model.PayoutListAdapter;
 import com.samet.ethermine.etherminepoolmonitor.model.Round;
 
 import java.util.ArrayList;

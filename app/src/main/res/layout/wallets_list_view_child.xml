@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="10">
+
+    <RelativeLayout
+        android:layout_weight="5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/set_wallet_active_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/set_active"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            fbutton:buttonColor="@color/colorPrimary"
+            fbutton:cornerRadius="5dp"
+            fbutton:shadowColor="@color/colorPrimaryDark"
+            fbutton:shadowEnabled="false" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_weight="5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/remove_wallet_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="@string/remove"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            fbutton:buttonColor="@color/fbutton_color_alizarin"
+            fbutton:cornerRadius="5dp"
+            fbutton:shadowColor="@color/fbutton_color_pomegranate"
+            fbutton:shadowEnabled="false" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

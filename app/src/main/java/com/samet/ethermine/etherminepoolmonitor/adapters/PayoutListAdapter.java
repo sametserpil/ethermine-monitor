@@ -1,4 +1,4 @@
-package com.samet.ethermine.etherminepoolmonitor.model;
+package com.samet.ethermine.etherminepoolmonitor.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.samet.ethermine.etherminepoolmonitor.R;
+import com.samet.ethermine.etherminepoolmonitor.model.Payout;
 
 import java.util.List;
 

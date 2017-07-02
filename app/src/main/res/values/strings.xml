@@ -48,5 +48,10 @@
     <string name="get_miner_data_url_prefix">https://ethermine.org/api/miner_new/</string>
     <string name="wallet_ids">wallet_ids</string>
     <string name="added_new_wallet_address">Added new wallet address</string>
+    <string name="set_active">SET ACTIVE</string>
+    <string name="remove">Remove</string>
+    <string name="removed_wallet">Succesfully removed the wallet.</string>
+    <string name="please_enter_wallet_address">Please enter a valid wallet address</string>
+    <string name="changed_active_wallet">Succesfully changed active wallet</string>
 
 </resources>

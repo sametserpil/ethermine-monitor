@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.samet.ethermine.etherminepoolmonitor.R;
+import com.samet.ethermine.etherminepoolmonitor.adapters.WorkersListAdapter;
 import com.samet.ethermine.etherminepoolmonitor.model.MinerData;
-import com.samet.ethermine.etherminepoolmonitor.model.WorkersListAdapter;
 
 /**
  * Created by samet on 15.06.2017.

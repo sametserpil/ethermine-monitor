@@ -68,6 +68,9 @@ public class AddNewWalletFragment extends Fragment implements View.OnClickListen
         String walletId = walletIdTextInput.getText().toString();
         if (walletId.startsWith("0x")) {
             walletId = walletId.substring(2);
+        } else if (walletId.equals("")) {
+            Toast.makeText(getContext(), getString(R.string.please_enter_wallet_address), Toast.LENGTH_SHORT).show();
+            return;
         }
         Context context = getActivity();
         SharedPreferences sharedPref = context.getSharedPreferences(
