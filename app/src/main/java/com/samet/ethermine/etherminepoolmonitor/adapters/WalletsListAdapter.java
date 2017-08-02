@@ -3,6 +3,7 @@ package com.samet.ethermine.etherminepoolmonitor.adapters;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,7 +99,12 @@ public class WalletsListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-        String worker = (String) getGroup(groupPosition);
+        String worker = "";
+        try {
+            worker = (String) getGroup(groupPosition);
+        } catch (Exception e) {
+            Log.i("Ethermine pool monitor", "Failed to get wallet");
+        }
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

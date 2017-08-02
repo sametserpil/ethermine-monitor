@@ -10,9 +10,9 @@ import org.json.JSONObject;
  */
 
 public class Settings {
-    private String email = "";
-    private String minPayout = "";
-    private String ip = "";
+    private String email = "unknown";
+    private String minPayout = "0.0";
+    private String ip = "unknown";
 
     public String getEmail() {
         return email;

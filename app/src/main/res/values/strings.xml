@@ -53,5 +53,7 @@
     <string name="removed_wallet">Succesfully removed the wallet.</string>
     <string name="please_enter_wallet_address">Please enter a valid wallet address</string>
     <string name="changed_active_wallet">Succesfully changed active wallet</string>
+    <string name="refresh">Refresh</string>
+    <string name="admob_ad_id">ca-app-pub-9214673468712821/2430924907</string>
 
 </resources>
